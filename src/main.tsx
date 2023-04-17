@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './index.css';
 import NavigationLayout from './components/NavigationLayout';
+import UpcomingMovies from './components/UpcomingMovies';
 
 export const router = createBrowserRouter([
   {
@@ -19,7 +20,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/movies',
-        element: <h1>hellou movies</h1>,
+        element: <UpcomingMovies />,
       },
     ],
   },
