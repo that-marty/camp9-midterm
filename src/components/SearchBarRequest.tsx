@@ -25,7 +25,6 @@ function useQuery<T>(url: string) {
     };
   }),
     [];
-
   return { data, isLoading, isError };
 }
 

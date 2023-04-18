@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './index.css';
 import NavigationLayout from './components/NavigationLayout';
-import SearchBarRequest from './components/searchBarRequest';
+import SearchBarRequest from './components/SearchBarRequest';
 
 export const router = createBrowserRouter([
   {
