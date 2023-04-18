@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './index.css';
 import NavigationLayout from './components/NavigationLayout';
+import MovieDetails from './pages/MovieDetails';
 
 export const router = createBrowserRouter([
   {
@@ -37,7 +38,7 @@ export const router = createBrowserRouter([
   },
   {
     path: '/movies/:id',
-    element: <h1>MOVIE DETAIL</h1>, // insert your page here
+    element: <MovieDetails />
   },
   {
     path: '/cast/:id',
