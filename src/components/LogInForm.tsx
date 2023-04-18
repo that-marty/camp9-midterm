@@ -1,5 +1,5 @@
 import React from 'react';
-import InputForm from './InputForm';
+import SingleInputFieldLogIn from './SingleInputFieldLogIn';
 
 type LogInForm = React.FormHTMLAttributes<HTMLFormElement>;
 
@@ -7,8 +7,15 @@ function LogInForm() {
   return (
     <>
       <form action="" onSubmit={() => {}}>
-        <InputForm placeholder={'your@email.com'} svg={'email'}></InputForm>
-        <InputForm placeholder={'your@email.com'} svg={'email'}></InputForm>
+        <SingleInputFieldLogIn
+          placeholder={'your@email.com'}
+          svg={'email'}
+        ></SingleInputFieldLogIn>
+
+        <SingleInputFieldLogIn
+          placeholder={'Enter your Password'}
+          svg={'key'}
+        ></SingleInputFieldLogIn>
       </form>
     </>
   );

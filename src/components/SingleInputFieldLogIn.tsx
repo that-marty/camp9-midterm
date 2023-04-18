@@ -1,20 +1,18 @@
-import React from 'react';
-
 type Props = {
   placeholder: 'your@email.com' | 'Enter your Password';
   svg: 'email' | 'key';
 };
 
-function InputForm({ placeholder, svg }: Props) {
+function SingleInputFieldLogIn({ placeholder, svg }: Props) {
   return (
-    <label className='relative'>
+    <div className="w-full rounded-lg bg-dark-light h-[48px] flex items-center p-5 gap-5 mt-5">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
         stroke-width="1.5"
         stroke="currentColor"
-        className="w-6 h-6 absolute top-3 left-5 text-white"
+        className="w-6 h-6 text-white-dimmed "
       >
         <path
           stroke-linecap="round"
@@ -26,13 +24,16 @@ function InputForm({ placeholder, svg }: Props) {
           }
         />
       </svg>
-      <input
-        type="text"
-        placeholder={placeholder}
-        className="w-full rounded-lg bg-gray-500 h-[48px] pl-16"
-      />
-    </label>
+      <label className="flex">
+        <input
+          type="email"
+          id="email"
+          placeholder={placeholder}
+          className="bg-dark-light typography-body"
+        />
+      </label>
+    </div>
   );
 }
 
-export default InputForm;
+export default SingleInputFieldLogIn;

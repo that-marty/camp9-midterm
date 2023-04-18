@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import InputForm from '../components/InputForm';
+import SingleInputFieldLogIn from '../components/SingleInputFieldLogIn';
 
-const meta: Meta<typeof InputForm> = {
+const meta: Meta<typeof SingleInputFieldLogIn> = {
   title: 'InputForm',
-  component: InputForm,
+  component: SingleInputFieldLogIn,
   parameters: {
     viewport: {
       defaultViewport: 'mobile1',
@@ -12,7 +12,7 @@ const meta: Meta<typeof InputForm> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof InputForm>;
+type Story = StoryObj<typeof SingleInputFieldLogIn>;
 
 export const Default: Story = {
   args: {
