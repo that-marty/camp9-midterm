@@ -15,8 +15,5 @@ export default meta;
 type Story = StoryObj<typeof WelcomeHeader>;
 
 export const Default: Story = {
-  args: {
-    name: 'Lui',
-    image: '../assets/Avatar.png',
-  },
+  args: {},
 };

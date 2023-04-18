@@ -10,7 +10,7 @@ interface Props {
 
 function WelcomeHeader({ name = 'Lui', image = Avatar, ...props }: Props) {
   return (
-    <header className="mx-5 mt-8 flex justify-between bg-[#1C1C27]">
+    <header className="flex justify-between bg-[#1C1C27]">
       <div className="flex flex-col justify-between">
         <h3 className="font-sans font-bold text-xs text-white opacity-40">
           Welcome {name}👋
@@ -19,9 +19,9 @@ function WelcomeHeader({ name = 'Lui', image = Avatar, ...props }: Props) {
           Let's relax and watch a movie!
         </h1>
       </div>
-      <a href="/">
+      <Link to="/settings">
         <img className="h-10 w-10" alt="avatar" src={image}></img>
-      </a>
+      </Link>
     </header>
   );
 }
