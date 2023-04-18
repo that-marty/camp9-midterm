@@ -10,11 +10,13 @@ function LogInForm() {
         <SingleInputFieldLogIn
           placeholder={'your@email.com'}
           svg={'email'}
+          type="email"
         ></SingleInputFieldLogIn>
 
         <SingleInputFieldLogIn
           placeholder={'Enter your Password'}
           svg={'key'}
+          type="password"
         ></SingleInputFieldLogIn>
       </form>
     </>
