@@ -16,19 +16,20 @@ interface RouteParams {
 
 export default function UpcomingMovies({ children }: UpcomingMovies) {
   const [movies, setMovies] = useState([]);
-  const { id } = useParams()
   useEffect(() => {
     axios
       .get(
         `https://api.themoviedb.org/3/movie/upcoming?api_key=b83392e48747a4845ad80c2011eaa33b`
       )
       .then(response => {
+        // console.log('API Response', response);
         setMovies(response.data.results);
       })
       .catch(error => {
         console.log(error);
       });
   }, []);
+
   return (
     <>
       <h2 className="typography-title">Upcoming Movies</h2>
