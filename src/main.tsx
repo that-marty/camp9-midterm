@@ -4,7 +4,6 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './index.css';
 import NavigationLayout from './components/NavigationLayout';
 import MovieDetails from './pages/MovieDetails';
-import SearchBarRequest from './components/SearchBarRequest';
 
 export const router = createBrowserRouter([
   {
@@ -39,7 +38,7 @@ export const router = createBrowserRouter([
   },
   {
     path: '/movies/:id',
-    element: <MovieDetails />
+    element: <MovieDetails />,
   },
   {
     path: '/cast/:id',
