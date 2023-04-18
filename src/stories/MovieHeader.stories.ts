@@ -21,3 +21,11 @@ export const Default: Story = {
     svg: true,
   },
 };
+
+export const WithoutSVG: Story = {
+  args: {
+    children: 'Movie Detail',
+    goBackTo: '/',
+    svg: false,
+  },
+};

@@ -5,6 +5,7 @@ import './index.css';
 import NavigationLayout from './components/NavigationLayout';
 import GenresSelectionPage from './components/genre/genres_selection/GenresSelection';
 import GenreFavorites from './components/genre/GenreFavorites';
+import MovieDetailHeader from './components/MovieDetailHeader';
 
 export const router = createBrowserRouter([
   {
@@ -21,7 +22,14 @@ export const router = createBrowserRouter([
       },
       {
         path: '/movies',
-        element: <h1>hellou movies</h1>,
+        element: (
+          <div>
+            <MovieDetailHeader goBackTo="/" svg={true}>
+              Movie
+            </MovieDetailHeader>
+            <MovieDetailHeader goBackTo="/">Movie</MovieDetailHeader>
+          </div>
+        ),
       },
     ],
   },
