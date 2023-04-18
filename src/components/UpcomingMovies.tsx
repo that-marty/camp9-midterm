@@ -1,12 +1,14 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom'
 
 type UpcomingMovies = React.HTMLAttributes<HTMLElement>;
 interface Movie {
   id: number;
   title: string;
   poster_path: string;
+  to: string;
 }
 
 export default function UpcomingMovies({ children }: UpcomingMovies) {
@@ -31,11 +33,14 @@ export default function UpcomingMovies({ children }: UpcomingMovies) {
       <section className="flex gap-5 overflow-y-hidden snap-mandatory snap-x -mx-5 py-3">
         {movies.map((movie: Movie) => (
           <div className="w-32 shrink-0 snap-center" key={movie.id}>
-            <img
-              className='rounded-md'
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              alt={movie.title}
-            />
+            <Link to={`/movie/${movie.id} `}  >
+              <img
+                className='rounded-md'
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                alt={movie.title}
+            
+              />
+            </Link>
           </div>
         ))}
       </section>

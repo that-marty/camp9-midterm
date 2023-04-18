@@ -4,6 +4,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './index.css';
 import NavigationLayout from './components/NavigationLayout';
 import UpcomingMovies from './components/UpcomingMovies';
+import MovieDetails from './pages/MovieDetails';
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +23,7 @@ export const router = createBrowserRouter([
         path: '/movies',
         element: <UpcomingMovies />,
       },
+      { path: '/movies/:id', element: <MovieDetails /> },
     ],
   },
 ]);
