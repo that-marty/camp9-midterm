@@ -17,9 +17,9 @@ function NavigationLayout() {
       </main>
       <footer className="py-8 px-16 w-full text-white-dimmed fixed bottom-0">
         <nav>
-          <ul className="flex flex-row justify-between">
+          <ul className="flex flex-row justify-between max-w-xs m-auto">
             <li>
-              <NavLink to="/home">
+              <NavLink to="/">
                 <HomeIcon className="w-6" />
               </NavLink>
             </li>
