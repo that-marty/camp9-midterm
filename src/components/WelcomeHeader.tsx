@@ -1,5 +1,5 @@
-import React from 'react';
 import Avatar from '../assets/Avatar.png';
+import { Link } from 'react-router-dom';
 
 export default function WelcomeHeader() {
   return (
@@ -12,9 +12,9 @@ export default function WelcomeHeader() {
           Let's relax and watch a movie!
         </h1>
       </div>
-      <a href="/">
-        <img src={Avatar}></img>
-      </a>
+      <Link to="/">
+        <img alt="avatar" src={Avatar}></img>
+      </Link>
     </header>
   );
 }
