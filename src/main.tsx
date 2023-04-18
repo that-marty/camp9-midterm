@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './index.css';
 import NavigationLayout from './components/NavigationLayout';
+import SearchBarRequest from './components/searchBarRequest';
 
 export const router = createBrowserRouter([
   {
@@ -15,7 +16,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <h1>Hai Home</h1>,
+        element: <SearchBarRequest />,
       },
       {
         path: '/movies',
