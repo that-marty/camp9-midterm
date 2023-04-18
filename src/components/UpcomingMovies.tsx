@@ -1,19 +1,22 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 type UpcomingMovies = React.HTMLAttributes<HTMLElement>;
 interface Movie {
   id: number;
   title: string;
   poster_path: string;
-  to: string;
+  overview: string;
+}
+interface RouteParams {
+  id: string;
 }
 
 export default function UpcomingMovies({ children }: UpcomingMovies) {
   const [movies, setMovies] = useState([]);
-
+  const { id } = useParams()
   useEffect(() => {
     axios
       .get(
@@ -21,7 +24,6 @@ export default function UpcomingMovies({ children }: UpcomingMovies) {
       )
       .then(response => {
         setMovies(response.data.results);
-        console.log(response);
       })
       .catch(error => {
         console.log(error);
@@ -33,7 +35,7 @@ export default function UpcomingMovies({ children }: UpcomingMovies) {
       <section className="flex gap-5 overflow-y-hidden snap-mandatory snap-x -mx-5 py-3">
         {movies.map((movie: Movie) => (
           <div className="w-32 shrink-0 snap-center" key={movie.id}>
-            <Link to={`/movie/${movie.id} `}  >
+            <Link to={`/movies/${movie.id} `}  >
               <img
                 className='rounded-md'
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
