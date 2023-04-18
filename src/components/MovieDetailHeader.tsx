@@ -11,7 +11,7 @@ interface Props {
 function MovieDetailHeader(props: Props) {
   const [isLiked, setIsLiked] = useState(false);
   return (
-    <div>
+    <div className="flex flex-row justify-between items-center">
       <Link to={props.goBackTo}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -19,7 +19,7 @@ function MovieDetailHeader(props: Props) {
           viewBox="0 0 24 24"
           strokeWidth="1.5"
           stroke="white"
-          className="w-6 h-4 absolute top-9 left-5"
+          className="w-6 h-4 text-white"
         >
           <path
             strokeLinecap="round"
@@ -28,7 +28,7 @@ function MovieDetailHeader(props: Props) {
           />
         </svg>
       </Link>
-      <p>{props.children}</p>
+      <p className="text-white text-[16px] font-bold">{props.children}</p>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -39,8 +39,9 @@ function MovieDetailHeader(props: Props) {
           setIsLiked(!isLiked);
         }}
         className={clsx(
+          'w-[18px] h-[16px]',
           props.svg ? 'stroke-red' : 'hidden',
-          props.svg && isLiked ? 'stroke-red bg-red' : 'stroke-red'
+          props.svg && isLiked ? 'stroke-red text-red' : 'stroke-red'
         )}
       >
         <path
