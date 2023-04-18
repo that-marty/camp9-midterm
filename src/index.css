@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer utilities {
+  .sbar:focus-within {
+    outline: #5e5f66 auto .125rem;
+    box-sizing: border-box;
+  }
+}
