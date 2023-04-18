@@ -27,8 +27,8 @@ export default function UpcomingMovies({ children }: UpcomingMovies) {
   }, []);
   return (
     <>
-      <h2 className="text-xl font-bold">Upcoming Movies</h2>
-      <section className="flex gap-5 overflow-y-hidden snap-mandatory snap-x -mx-5">
+      <h2 className="typography-title">Upcoming Movies</h2>
+      <section className="flex gap-5 overflow-y-hidden snap-mandatory snap-x -mx-5 py-3">
         {movies.map((movie: Movie) => (
           <div className="w-32 shrink-0 snap-center" key={movie.id}>
             <img
