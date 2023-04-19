@@ -4,7 +4,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './index.css';
 import NavigationLayout from './components/NavigationLayout';
 import MovieDetails from './pages/MovieDetails';
-import SearchBar from './components/Searchbar';
+import SearchBar from './components/SearchBar';
 
 export const router = createBrowserRouter([
   {
