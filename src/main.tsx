@@ -4,6 +4,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './index.css';
 import NavigationLayout from './components/NavigationLayout';
 import MovieDetails from './pages/MovieDetails';
+import LogInPage from './pages/LogInPage';
 
 export const router = createBrowserRouter([
   {
@@ -30,7 +31,7 @@ export const router = createBrowserRouter([
   },
   {
     path: '/login',
-    element: <h1>Login</h1>, // insert your page here
+    element: <LogInPage />, // insert your page here
   },
   {
     path: '/genres',
