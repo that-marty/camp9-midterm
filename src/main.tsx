@@ -4,7 +4,11 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './index.css';
 import NavigationLayout from './components/NavigationLayout';
 import MovieDetails from './pages/MovieDetails';
+<<<<<<< HEAD
+import SearchBar from './components/Searchbar';
+=======
 import LogInPage from './pages/LogInPage';
+>>>>>>> main
 
 export const router = createBrowserRouter([
   {
@@ -56,6 +60,10 @@ export const router = createBrowserRouter([
   {
     path: '/success',
     element: <h1>BOOKING SUCCESSFULL</h1>, // insert your page here
+  },
+  {
+    path: '/searchbar',
+    element: <SearchBar />, // insert your page here
   },
 ]);
 
