@@ -8,7 +8,8 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { Combobox, Transition } from '@headlessui/react';
 import { MagnifyingGlassIcon, CheckIcon } from '@heroicons/react/20/solid';
 import useQuery from '../hook/useQuery';
-import { MovieDbResponse } from '../utilities/types';
+import { Movie, MovieDbResponse } from '../utilities/types';
+import axios from 'axios';
 
 // const movie = [
 //   { id: 1, title: 'Wade Cooper' },
@@ -19,27 +20,30 @@ import { MovieDbResponse } from '../utilities/types';
 //   { id: 6, title: 'Hellen Schmidt' },
 // ]
 
-const { data } = useQuery<MovieDbResponse>(
-  'https://api.themoviedb.org/3/movie/popular?api_key=7bdc02c5d27a184488dd56b87a8cad76&language=en-US%60'
-);
-const movie = data?.results;
-
 function Searchbar() {
-  const [selected, setSelected] = useState(movie?.[0])
-  const [query, setQuery] = useState('')
-  
+  const [query, setQuery] = useState('');
+  const [movie, setMovie] = useState<Movie[]>([]);
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://api.themoviedb.org/3/search/movie?api_key=7bdc02c5d27a184488dd56b87a8cad76&language=en-US&query=${query}&include_adult=false`
+      )
+      .then(res => setMovie(res.data.results))
+      .catch();
+  }, [query]);
 
   const filtereddata =
     query === ''
       ? movie
       : movie?.filter(movie =>
-        movie.title
+          movie.title
             .toLowerCase()
             .replace(/\s+/g, '')
             .includes(query.toLowerCase().replace(/\s+/g, ''))
         );
-  
-    useEffect(() => {
+
+  useEffect(() => {
     function focusSearchbar() {
       const sbar = document.querySelector('.sbar') as HTMLDivElement;
       const sbarInput = document.querySelector(
@@ -53,7 +57,7 @@ function Searchbar() {
   }, []);
 
   return (
-    <Combobox value={selected} onChange={setSelected}>
+    <Combobox value={query} onChange={setQuery}>
       <div className="w-[20.938rem] h-[3rem]">
         <div className="sbar bg-[#363740] w-[20.938rem] h-[3rem] rounded-full flex items-center">
           <div className="sbar__icon border-solid py-[0.938rem] pl-[1.438rem] pr-[1.188rem]">
@@ -123,5 +127,3 @@ function Searchbar() {
   );
 }
 export default Searchbar;
-
-
