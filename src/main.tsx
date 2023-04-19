@@ -4,6 +4,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './index.css';
 import NavigationLayout from './components/NavigationLayout';
 import MovieDetails from './pages/MovieDetails';
+import BookTime from './pages/BookTime';
 
 export const router = createBrowserRouter([
   {
@@ -46,7 +47,7 @@ export const router = createBrowserRouter([
   },
   {
     path: '/dates',
-    element: <h1>SELECT DATE AND TIME</h1>, // insert your page here
+    element: <BookTime />, // insert your page here
   },
   {
     path: '/seats',
