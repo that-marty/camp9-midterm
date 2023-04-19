@@ -7,7 +7,7 @@ export default function useQuery<T>(url: string) {
   const [isError, setIsError] = useState<null | string>(null);
 
   useEffect(() => {
-    async () => {
+    (async () => {
       try {
         const { data } = await axios.get<T>(url);
         setData(() => data);
@@ -15,9 +15,9 @@ export default function useQuery<T>(url: string) {
         const error = err as AxiosError;
         setIsError(error.message);
       }
-    };
-  }),
-    [];
+    })();
+    setIsLoading(false);
+  }, []);
 
   return { data, isLoading, isError };
 }
