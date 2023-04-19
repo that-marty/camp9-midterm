@@ -1,24 +1,39 @@
+/* This is a React component that renders a search bar with autocomplete functionality using the
+`Combobox` and `Transition` components from the `@headlessui/react` library. It also uses icons from
+the `@heroicons/react` library. The component maintains state using the `useState` hook and updates
+the state using the `onChange` event. It also uses the `useEffect` hook to add an event listener to
+focus the search bar input when the search bar is clicked. */
+
 import React, { Fragment, useState, useEffect } from 'react';
 import { Combobox, Transition } from '@headlessui/react';
 import { MagnifyingGlassIcon, CheckIcon } from '@heroicons/react/20/solid';
+import useQuery from '../hook/useQuery';
+import { MovieDbResponse } from '../utilities/types';
 
-const people = [
-  { id: 1, name: 'Wade Cooper' },
-  { id: 2, name: 'Arlene Mccoy' },
-  { id: 3, name: 'Devon Webb' },
-  { id: 4, name: 'Tom Cook' },
-  { id: 5, name: 'Tanya Fox' },
-  { id: 6, name: 'Hellen Schmidt' },
-];
+// const movie = [
+//   { id: 1, title: 'Wade Cooper' },
+//   { id: 2, title: 'Arlene Mccoy' },
+//   { id: 3, title: 'Devon Webb' },
+//   { id: 4, title: 'Tom Cook' },
+//   { id: 5, title: 'Tanya Fox' },
+//   { id: 6, title: 'Hellen Schmidt' },
+// ]
+
+const { data } = useQuery<MovieDbResponse>(
+  'https://api.themoviedb.org/3/movie/popular?api_key=7bdc02c5d27a184488dd56b87a8cad76&language=en-US%60'
+);
+const movie = data?.results;
 
 function Searchbar() {
-  const [selected, setSelected] = useState(people[0]);
-  const [query, setQuery] = useState('');
-  const filteredPeople =
+  const [selected, setSelected] = useState(movie?.[0])
+  const [query, setQuery] = useState('')
+  
+
+  const filtereddata =
     query === ''
-      ? people
-      : people.filter(person =>
-          person.name
+      ? movie
+      : movie?.filter(movie =>
+        movie.title
             .toLowerCase()
             .replace(/\s+/g, '')
             .includes(query.toLowerCase().replace(/\s+/g, ''))
@@ -63,20 +78,20 @@ function Searchbar() {
           afterLeave={() => setQuery('')}
         >
           <Combobox.Options className="absolute mt-1 max-h-60 w-[20.938rem] overflow-auto rounded-md bg-[#363740] py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-            {filteredPeople.length === 0 && query !== '' ? (
+            {filtereddata?.length === 0 && query !== '' ? (
               <div className="relative cursor-default select-none py-2 px-4 text-[#9ca3af]">
                 Nothing found.
               </div>
             ) : (
-              filteredPeople.map(person => (
+              filtereddata?.map(movie => (
                 <Combobox.Option
-                  key={person.id}
+                  key={movie.id}
                   className={({ active }) =>
                     `relative cursor-default select-none py-2 pl-10 pr-4 ${
                       active ? 'bg-[#FFB43A] text-[363740]' : 'text-[#9ca3af]'
                     }`
                   }
-                  value={person}
+                  value={movie}
                 >
                   {({ selected, active }) => (
                     <>
@@ -85,7 +100,7 @@ function Searchbar() {
                           selected ? 'font-medium' : 'font-normal'
                         }`}
                       >
-                        {person.name}
+                        {movie.title}
                       </span>
                       {selected ? (
                         <span
@@ -108,3 +123,5 @@ function Searchbar() {
   );
 }
 export default Searchbar;
+
+
