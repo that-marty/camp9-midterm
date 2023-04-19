@@ -4,7 +4,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './index.css';
 import NavigationLayout from './components/NavigationLayout';
 import MovieDetails from './pages/MovieDetails';
-import Searchbar from './components/Searchbar';
+import SearchBar from './components/Searchbar';
 
 export const router = createBrowserRouter([
   {
@@ -59,7 +59,7 @@ export const router = createBrowserRouter([
   },
   {
     path: '/searchbar',
-    element: <Searchbar />, // insert your page here
+    element: <SearchBar />, // insert your page here
   },
 ]);
 

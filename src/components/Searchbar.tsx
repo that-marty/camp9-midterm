@@ -5,7 +5,7 @@ import useQuery from '../hook/useQuery';
 import { Movie, MovieDbResponse } from '../utilities/types';
 import axios from 'axios';
 
-function Searchbar() {
+function SearchBar() {
   const [query, setQuery] = useState('');
   const [movie, setMovie] = useState<Movie[]>([]);
 
@@ -18,7 +18,7 @@ function Searchbar() {
       .catch();
   }, [query]);
 
-  const filtereddata =
+  const filteredData =
     query === ''
       ? movie
       : movie?.filter(movie =>
@@ -29,7 +29,7 @@ function Searchbar() {
         );
 
   useEffect(() => {
-    function focusSearchbar() {
+    function focusSearchBar() {
       const sbar = document.querySelector('.sbar') as HTMLDivElement;
       const sbarInput = document.querySelector(
         '.sbar__input'
@@ -38,7 +38,7 @@ function Searchbar() {
         sbarInput.focus();
       });
     }
-    focusSearchbar();
+    focusSearchBar();
   }, []);
 
   return (
@@ -67,12 +67,12 @@ function Searchbar() {
           afterLeave={() => setQuery('')}
         >
           <Combobox.Options className="absolute mt-1 max-h-60 w-[20.938rem] overflow-auto rounded-md bg-[#363740] py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-            {filtereddata?.length === 0 && query !== '' ? (
+            {filteredData?.length === 0 && query !== '' ? (
               <div className="relative cursor-default select-none py-2 px-4 text-[#9ca3af]">
                 Nothing found.
               </div>
             ) : (
-              filtereddata?.map(movie => (
+              filteredData?.map(movie => (
                 <Combobox.Option
                   key={movie.id}
                   className={({ active }) =>
@@ -111,4 +111,4 @@ function Searchbar() {
     </Combobox>
   );
 }
-export default Searchbar;
+export default SearchBar;
