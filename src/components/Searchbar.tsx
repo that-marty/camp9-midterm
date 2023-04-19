@@ -1,24 +1,9 @@
-/* This is a React component that renders a search bar with autocomplete functionality using the
-`Combobox` and `Transition` components from the `@headlessui/react` library. It also uses icons from
-the `@heroicons/react` library. The component maintains state using the `useState` hook and updates
-the state using the `onChange` event. It also uses the `useEffect` hook to add an event listener to
-focus the search bar input when the search bar is clicked. */
-
 import React, { Fragment, useState, useEffect } from 'react';
 import { Combobox, Transition } from '@headlessui/react';
 import { MagnifyingGlassIcon, CheckIcon } from '@heroicons/react/20/solid';
 import useQuery from '../hook/useQuery';
 import { Movie, MovieDbResponse } from '../utilities/types';
 import axios from 'axios';
-
-// const movie = [
-//   { id: 1, title: 'Wade Cooper' },
-//   { id: 2, title: 'Arlene Mccoy' },
-//   { id: 3, title: 'Devon Webb' },
-//   { id: 4, title: 'Tom Cook' },
-//   { id: 5, title: 'Tanya Fox' },
-//   { id: 6, title: 'Hellen Schmidt' },
-// ]
 
 function Searchbar() {
   const [query, setQuery] = useState('');
