@@ -11,3 +11,13 @@ export type MovieDbResponse = {
   total_pages: number;
   total_results: number;
 };
+
+export type MovieDetailDbResponse = {
+  title: string;
+  backdrop_path: string;
+  release_date: string;
+  genres: [];
+  runtime?: number;
+  vote_average: number;
+  overview: string;
+}
