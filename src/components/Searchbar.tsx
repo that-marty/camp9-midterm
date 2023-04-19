@@ -1,9 +1,8 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { Combobox, Transition } from '@headlessui/react';
 import { MagnifyingGlassIcon, CheckIcon } from '@heroicons/react/20/solid';
-import useQuery from '../hook/useQuery';
-import { Movie, MovieDbResponse } from '../utilities/types';
 import axios from 'axios';
+import { Movie } from '../utilities/types';
 
 function SearchBar() {
   const [query, setQuery] = useState('');
