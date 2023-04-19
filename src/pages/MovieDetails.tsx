@@ -1,9 +1,12 @@
 import React from 'react';
+import Button from '../components/Button';
+import PageHeader from '../components/PageHeader';
 
 function MovieDetails() {
   return (
     <>
-      <h1 className="typography-title">Movie Detail</h1>
+      <PageHeader children={'Movie Detail'} />
+      <Button className="typography-primary">Get Reservation</Button>
     </>
   );
 }

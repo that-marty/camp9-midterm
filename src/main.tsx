@@ -4,6 +4,8 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './index.css';
 import NavigationLayout from './components/NavigationLayout';
 import MovieDetails from './pages/MovieDetails';
+import Home from './pages/Home';
+import Genres from './pages/Genres';
 
 export const router = createBrowserRouter([
   {
@@ -12,7 +14,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <h1>HOME</h1>, // insert your page here
+        element: <Home/>, // insert your page here
       },
       {
         path: '/movies',
@@ -34,7 +36,7 @@ export const router = createBrowserRouter([
   },
   {
     path: '/genres',
-    element: <h1>GENRES</h1>, // insert your page here
+    element: <Genres/>, // insert your page here
   },
   {
     path: '/movies/:id',
