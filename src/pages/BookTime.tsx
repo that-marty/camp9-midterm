@@ -28,7 +28,6 @@ export default function BookTime() {
 
   const currentDate = `${day} ${montName}`;
   const currentHour = `${hours}:${minutes}`;
-  console.log(currentHour);
 
   return (
     <div className="mx-5 my-6">
@@ -36,15 +35,12 @@ export default function BookTime() {
       <div className="py-6 border-b border-white-dimmed">
         <h2 className="text-sm text-white-dimmed font-bold ml-1">Date</h2>
         <div className="pt-5 grid grid-cols-4 gap-[18px]">
-          <BookingBtn label={currentDate} available={true} />
-          <BookingBtn label={`${day + 1} ${montName}`} available={true} />
+          <BookingBtn>29 Dez</BookingBtn>
         </div>
       </div>
       <div className="py-6 border-opacity-20">
         <h2 className="text-sm text-white-dimmed font-bold ml-1">Time</h2>
-        <div className="pt-5 grid grid-cols-4 gap-[18px]">
-          <BookingBtn label={currentHour} available={true} />
-        </div>
+        <div className="pt-5 grid grid-cols-4 gap-[18px]"></div>
       </div>
     </div>
   );
