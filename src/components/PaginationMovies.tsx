@@ -16,6 +16,7 @@ export default function PaginationMovies({
   const { isError, isLoading, data } = useQuery<MovieDbResponse>(
     'https://api.themoviedb.org/3/movie/upcoming?api_key=b83392e48747a4845ad80c2011eaa33b'
   );
+  console.log(data);
   const allMovies = data?.results;
   if (isError) {
     return <h1>"Couldn't find the movies, sorry"</h1>;
