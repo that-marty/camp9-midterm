@@ -3,10 +3,9 @@ import UpcomingMovies from '../components/UpcomingMovies';
 
 function Home() {
   return (
-    <div className=''>
+    <section>
       <UpcomingMovies />
-      <NavigationLayout />
-    </div>
+    </section>
   );
 }
 
