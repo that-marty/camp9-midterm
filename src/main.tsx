@@ -19,7 +19,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/movies',
-        element: <h1>hellou movies</h1>,
+        element: <Movies />,
       },
     ],
   },

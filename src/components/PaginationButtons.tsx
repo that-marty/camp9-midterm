@@ -1,41 +1,35 @@
 import React, { Key } from 'react';
 import { useState } from 'react';
 import clsx from 'clsx';
+import { Link } from 'react-router-dom';
 
-type Button = React.ButtonHTMLAttributes<HTMLButtonElement>;
-
-interface PaginationButtons extends Button {
-  btnid: number;
+interface PaginationButtons {
+  state: number;
+  setState: React.Dispatch<React.SetStateAction<number>>;
 }
-function PaginationButtons({ btnid, ...props }: PaginationButtons) {
-  const [state, setState] = useState(1);
-  const [active, setActive] = useState(false);
-  const paginationNumbers = [1, 2, 3, 4, 5];
-  let backgroundcolour = 'bg-[#FFFFFF/40]';
 
+function PaginationButtons({ setState, state }: PaginationButtons) {
+  const paginationNumbers = [1, 2, 3, 4, 5];
   return (
-    <div>
+    <div className="w-screen flex justify-between">
       {paginationNumbers.map((value: number, index) => {
-        if (state === btnid) {
-          setActive(true);
-        }
         return (
-          <button
-            btnid={value}
+          <Link
+            to={'1'}
+            key={index}
             onClick={e => {
-              setState(btnid);
+              setState(value);
             }}
-            className={
-              (clsx(active === true ? 'bg-[#FFB43A]' : 'bg-[#FFFFFF/40]'),
-              'first-line:w-8 h-8, rounded-sm')
-            }
+            className={clsx(
+              state === value ? 'bg-[#FFB43A]' : 'bg-[#FFFFFF] opacity-40',
+              ' w-8 h-8, rounded-sm text-center'
+            )}
           >
-            <p>{btnid}</p>
-          </button>
+            <p>{value}</p>
+          </Link>
         );
       })}
     </div>
   );
 }
-
 export default PaginationButtons;
