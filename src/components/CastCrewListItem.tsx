@@ -1,23 +1,32 @@
+import clsx from 'clsx';
 import React from 'react';
 
 type Props = {
-  url: string;
+  imageUrl: string | undefined;
   actorName: string;
   character: string;
 };
 
-function CastCrewListItem(props: Props) {
+//--:image found, url is there
+//undefined:axios in the process of getting the image
+//NO IMAGE FOUND: axios finished but there is no image
+
+function CastCrewListItem({ actorName, character, imageUrl }: Props) {
   return (
     <div className="flex m-4 gap-4">
       <img
-        src={props.url}
-        alt={props.actorName}
+        src={
+          !imageUrl || imageUrl === 'NO IMAGE FOUND'
+            ? 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1024px-Default_pfp.svg.png'
+            : imageUrl
+        }
+        alt={actorName}
         className="bg-gray-300 w-16 h-16 object-cover"
       />
       <div>
-        <h2 className="typography-primary text-white">{props.actorName}</h2>
+        <h2 className="typography-primary text-white">{actorName}</h2>
         <h3 className="typography-description text-white-dimmed">
-          {props.character}
+          {character}
         </h3>
       </div>
     </div>
