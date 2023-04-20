@@ -1,11 +1,15 @@
-export function m2ham(argMinutes: number | undefined): string | undefined {
-    if (typeof argMinutes === "number") {
-        if (argMinutes < 60) {
-            return (argMinutes + "m");
-        } else {
-            const hours = Math.trunc(argMinutes/60);
-            const minutes = argMinutes % 60;
-            return hours + "h " + minutes + "m";
-        }
+import { MovieDetailDbResponse } from './types';
+
+export function minutesToHoursAndMinutes(
+  data: MovieDetailDbResponse | null
+): string | undefined {
+  if (data && typeof data.runtime === 'number') {
+    if (data.runtime < 60) {
+      return data.runtime + 'm';
+    } else {
+      const hours = Math.trunc(data.runtime / 60);
+      const minutes = data.runtime % 60;
+      return hours + 'h ' + minutes + 'm';
     }
   }
+}
