@@ -6,6 +6,11 @@ import NavigationLayout from './components/NavigationLayout';
 import MovieDetails from './pages/MovieDetails';
 import Credits from './pages/Credits';
 
+import SearchBar from './components/Searchbar';
+
+import LogInPage from './pages/LogInPage';
+
+
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -31,7 +36,7 @@ export const router = createBrowserRouter([
   },
   {
     path: '/login',
-    element: <h1>Login</h1>, // insert your page here
+    element: <LogInPage />, // insert your page here
   },
   {
     path: '/genres',
@@ -56,6 +61,10 @@ export const router = createBrowserRouter([
   {
     path: '/success',
     element: <h1>BOOKING SUCCESSFULL</h1>, // insert your page here
+  },
+  {
+    path: '/searchbar',
+    element: <SearchBar />, // insert your page here
   },
 ]);
 
