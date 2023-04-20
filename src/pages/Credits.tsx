@@ -1,17 +1,18 @@
 import { ChevronLeftIcon } from '@heroicons/react/24/solid';
 import React, { useEffect, useState } from 'react';
-import PageHeader from '../components/PageHeader';
-import { MovieDbCreditsResponse, TMDBCast, TMDBCrew } from '../utilities/types';
+import PageHeader from '../components/CreditsPageHeader';
+import {
+  MovieDbCreditsResponse,
+  TMDBCast,
+  TMDBCrew,
+  CreditsImage,
+} from '../utilities/types';
 import useQuery from '../hook/useQuery';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import CastCrewButton from '../components/CastCrewButton';
 import CastCrewListItem from '../components/CastCrewListItem';
-
-type CreditsImage = {
-  id: number;
-  imgUrl: string;
-};
+import MovieDetailHeader from '../components/MovieDetailHeader';
 
 //
 // Image fetching function
@@ -52,10 +53,12 @@ function getImages(
 //
 // Component
 //
-function Credits() {
+function Credits({ movieId }: { movieId?: number }) {
   const { id } = useParams();
   const { data, isLoading, isError } = useQuery<MovieDbCreditsResponse>(
-    `https://api.themoviedb.org/3/movie/${id}/credits?api_key=b83392e48747a4845ad80c2011eaa33b&language=en-US`
+    `https://api.themoviedb.org/3/movie/${
+      movieId ? movieId : id
+    }/credits?api_key=b83392e48747a4845ad80c2011eaa33b&language=en-US`
   );
   const [castImages, setCastImages] = useState<CreditsImage[]>([]);
   const [fetchedCastImages, setFetchedCastImages] = useState(false);
@@ -66,8 +69,6 @@ function Credits() {
   // when credits data is fetched
   // fetch an image url for each cast and crew member and save it to the state
   useEffect(() => {
-    console.log('inUseEffect');
-    console.log(data);
     if (data) {
       // fetch all the cast images
       getImages(
@@ -84,9 +85,7 @@ function Credits() {
         setFetchedCrewImages
       );
     }
-    return () => {
-      console.log('in cleanup');
-    };
+    return () => {};
   }, [data]);
   //
   // JSX returns
@@ -107,7 +106,9 @@ function Credits() {
         <PageHeader>Cast & Crew</PageHeader>
         <div className="my-4">
           <h4 className="typography-body">
-            Error with fetching credits info for movie id {id}
+            {`Error with fetching credits info for movie id ${
+              movieId ? movieId : id
+            }.`}
           </h4>
           <h4 className="typography-description">{isError}</h4>
         </div>
@@ -118,8 +119,10 @@ function Credits() {
   else
     return (
       <section className="py-9 px-6 mb-2">
-        <PageHeader>Cast & Crew</PageHeader>
-        <div className="text-white flex justify-between my-6 ">
+        <MovieDetailHeader goBackTo={`/movies/:${id}`}>
+          Cast & Crew
+        </MovieDetailHeader>
+        <div className="text-white flex justify-between my-6 select-none">
           <CastCrewButton
             status={crewOrCast === 'cast' ? 'active' : 'passive'}
             onClick={() => setCrewOrCast('cast')}
@@ -133,7 +136,7 @@ function Credits() {
             Crew
           </CastCrewButton>
         </div>
-        <ul className="flex flex-col text-white">
+        <ul className="flex flex-col text-white gap-4">
           {crewOrCast === 'cast'
             ? data?.cast.map(castmember => (
                 <CastCrewListItem
@@ -156,6 +159,7 @@ function Credits() {
                 />
               ))}
         </ul>
+        {/* the little dark stripe at the bottom */}
         <footer className="w-screen h-10 bg-dark fixed -bottom-2 left-0"></footer>
       </section>
     );

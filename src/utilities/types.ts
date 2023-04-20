@@ -11,9 +11,15 @@ export type MovieDbResponse = {
   total_pages: number;
   total_results: number;
 };
-// types for credits
+//
+// types for the credits page
 export type TMBDImageResponse = {
   profiles: { file_path: string }[];
+};
+
+export type CreditsImage = {
+  id: number;
+  imgUrl: string;
 };
 
 export type TMDBCast = {

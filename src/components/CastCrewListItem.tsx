@@ -13,7 +13,7 @@ type Props = {
 
 function CastCrewListItem({ actorName, character, imageUrl }: Props) {
   return (
-    <div className="flex m-4 gap-4">
+    <div className="flex gap-5">
       <img
         src={
           !imageUrl || imageUrl === 'NO IMAGE FOUND'
@@ -23,7 +23,7 @@ function CastCrewListItem({ actorName, character, imageUrl }: Props) {
         alt={actorName}
         className="bg-gray-300 w-16 h-16 object-cover"
       />
-      <div>
+      <div className="flex flex-col gap-1 justify-center">
         <h2 className="typography-primary text-white">{actorName}</h2>
         <h3 className="typography-description text-white-dimmed">
           {character}
