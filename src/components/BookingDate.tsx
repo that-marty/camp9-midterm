@@ -1,4 +1,4 @@
-import BookingBtn from "./BookingBtn";
+import BookingBtn from './BookingBtn';
 
 export default function BookingDate() {
   const currentDate = new Date();
@@ -53,7 +53,5 @@ export default function BookingDate() {
     timeBtns.push(bookingBtn);
     currentDate.setMinutes(currentDate.getMinutes() + movieDurationInMinutes);
   }
-  return (
-    <>{dateBtns}</>
-  )
+  return <>{dateBtns}</>;
 }

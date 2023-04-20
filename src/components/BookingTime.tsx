@@ -1,4 +1,4 @@
-import BookingBtn from "./BookingBtn";
+import BookingBtn from './BookingBtn';
 
 export default function BookingTime() {
   const currentDate = new Date();
@@ -55,3 +55,5 @@ export default function BookingTime() {
   }
   return <>{timeBtns}</>;
 }
+
+
