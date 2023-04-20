@@ -4,6 +4,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './index.css';
 import NavigationLayout from './components/NavigationLayout';
 import MovieDetails from './pages/MovieDetails';
+import Credits from './pages/Credits';
 
 import SearchBar from './components/Searchbar';
 
@@ -46,8 +47,8 @@ export const router = createBrowserRouter([
     element: <MovieDetails />,
   },
   {
-    path: '/cast/:id',
-    element: <h1>CAST AND CREW</h1>, // insert your page here
+    path: '/credits/:id',
+    element: <Credits />,
   },
   {
     path: '/dates',
