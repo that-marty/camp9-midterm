@@ -20,7 +20,9 @@ function Button({ variant = 'primary', size = 'lg', ...props }: Props) {
         size === 'lg' ? 'py-4' : 'py-3' 
       )}
     >
-      {props.children}
+      <p className='typography-primary'>
+        {props.children}
+      </p>
     </button>
   );
 }

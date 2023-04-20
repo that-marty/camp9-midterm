@@ -1,8 +1,9 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import useQuery from '../hook/useQuery';
 import { MovieDetailDbResponse } from '../utilities/types';
 import Button from '../components/Button';
 import MovieDetailHeader from '../components/MovieDetailHeader';
+import { m2ham } from '../utilities/minutesToHoursAndMinutes';
 
 function MovieDetails() {
   const { id } = useParams();
@@ -12,34 +13,46 @@ function MovieDetails() {
   );
 
   return (
-    <article className='pt-7'>
+    <article className='py-7 h-screen'>
       <MovieDetailHeader children='Movie Detail' goBackTo='/' svg={true}/>
-      <div className='px-5 flex flex-col'>
+      <div className='px-5 pb-7 h-full flex flex-col'>
         <img
-          className="rounded-md"
+          className="rounded-md mt-5"
           src={`https://image.tmdb.org/t/p/w500${data?.backdrop_path}`}
           alt={data?.title}
         />
-        <h2 className='typography-title'>{data?.title}</h2>
-        <div>
-          <p className='typography-title'>{data?.release_date}</p>
-          {/* <p>{data?.genres }</p> */}
-          <p className='typography-body'>{data?.runtime}</p>
-          <p className='typography-body'>{data?.vote_average}</p>
-        </div>
-        <div>
-          <div>
-            <div className='typography-body font-bold'>Director: Lorem, ipsum.</div>
-            <div className='typography-body'>Writer: Lorem, Ipsum.</div>
+        <h2 className='typography-title mt-5'>{data?.title}</h2>
+        <div className='mt-3 flex justify-between'>
+          <div className='flex gap-3'>
+            <p className='typography-description text-white'>{data?.release_date.split('-')[0]}</p>
+            {/* <p>{data?.genres.id }</p> */}
+            <p className='typography-description'>Hardcoded/Genre</p>
+            <p className='typography-description'>{m2ham(data?.runtime)}</p>
           </div>
-          <button>Cast and Crew</button>
+          <div className='flex gap-1' >
+            <span className='typography-description text-green'>{data && Math.round(data?.vote_average * 10) + "%"}</span>
+            <span className='typography-description'>Score</span>
+          </div>
         </div>
-        <hr></hr>
-        <h2 className='typography-title'>Synopsis</h2>
-        <p className='typography-body'>{data?.overview}</p>
-        <a href="%">Read more</a>
-        <div className='bg-slate-500 flex-grow'></div>
-        <Button />
+        <div className='flex justify-between items-center mt-2 w-full gap-5'>
+          <div className='grid grid-cols-2 h-full content-around'>
+              <div className='typography-secondary font-bold'>Director:</div>
+              <div className='typography-secondary font-bold whitespace-nowrap text-white'>Lorem, ipsum.</div>
+              <div className='typography-description'>Writer:</div>
+              <div className='typography-description whitespace-nowrap text-white'>Lorem, Ipsum.</div>
+          </div>
+          <Link className='flex-1' to={`/cast/${id}`}>
+            <Button variant='secondary' className='text-white'>Cast & Crew</Button>
+          </Link>
+        </div>
+        <hr className='mt-3'></hr>
+        <h2 className='typography-title mt-3'>Synopsis</h2>
+        <p className='typography-body mt-3'>{data?.overview}</p>
+        <a className='typography-body text-orange-500 underline mt-2' href={`https://www.imdb.com/title/${data?.imdb_id}`}>Read more</a>
+        <div className='flex-auto'></div>
+        <Link to="/dates">
+          <Button>Get Reservation</Button>
+        </Link>
       </div>
     </article>
   );

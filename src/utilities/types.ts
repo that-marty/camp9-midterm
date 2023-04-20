@@ -17,7 +17,8 @@ export type MovieDetailDbResponse = {
   backdrop_path: string;
   release_date: string;
   genres: [];
-  runtime?: number;
+  runtime: number;
   vote_average: number;
   overview: string;
+  imdb_id: string;
 }
