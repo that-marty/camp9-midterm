@@ -4,11 +4,8 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './index.css';
 import NavigationLayout from './components/NavigationLayout';
 import MovieDetails from './pages/MovieDetails';
-<<<<<<< HEAD
 import SearchBar from './components/Searchbar';
-=======
 import LogInPage from './pages/LogInPage';
->>>>>>> main
 
 export const router = createBrowserRouter([
   {
