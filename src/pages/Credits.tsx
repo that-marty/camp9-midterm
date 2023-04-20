@@ -5,6 +5,8 @@ import { MovieDbCreditsResponse, TMDBCast, TMDBCrew } from '../utilities/types';
 import useQuery from '../hook/useQuery';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import CastCrewButton from '../components/CastCrewButton';
+import CastCrewListItem from '../components/CastCrewListItem';
 
 type CreditsImage = {
   id: number;
@@ -59,6 +61,7 @@ function Credits() {
   const [fetchedCastImages, setFetchedCastImages] = useState(false);
   const [crewImages, setCrewImages] = useState<CreditsImage[]>([]);
   const [fetchedCrewImages, setFetchedCrewImages] = useState(false);
+  const [crewOrCast, setCrewOrCast] = useState<'cast' | 'crew'>('cast');
   //
   // when credits data is fetched
   // fetch an image url for each cast and crew member and save it to the state
@@ -116,20 +119,42 @@ function Credits() {
     return (
       <section className="py-9 px-6 mb-2">
         <PageHeader>Cast & Crew</PageHeader>
-        <div className="text-white flex justify-between m-6">
-          <button>cast</button>
-          <button>crew</button>
+        <div className="text-white flex justify-between my-6 ">
+          <CastCrewButton
+            status={crewOrCast === 'cast' ? 'active' : 'passive'}
+            onClick={() => setCrewOrCast('cast')}
+          >
+            Cast
+          </CastCrewButton>
+          <CastCrewButton
+            status={crewOrCast === 'crew' ? 'active' : 'passive'}
+            onClick={() => setCrewOrCast('crew')}
+          >
+            Crew
+          </CastCrewButton>
         </div>
-        <ul className="flex flex-col gap-4 text-white">
-          {data?.cast.map(castmember => (
-            <li key={castmember.name} className="h-16 bg-white-dimmed">
-              {castmember.name}
-              <img
-                className="w-20 h-20"
-                src={castImages.find(el => el.id == castmember.id)?.imgUrl}
-              />
-            </li>
-          ))}
+        <ul className="flex flex-col text-white">
+          {crewOrCast === 'cast'
+            ? data?.cast.map(castmember => (
+                <CastCrewListItem
+                  key={`castid:${castmember.id}`}
+                  actorName={castmember.name}
+                  character={castmember.character}
+                  imageUrl={
+                    castImages.find(el => el.id == castmember.id)?.imgUrl
+                  }
+                />
+              ))
+            : data?.crew.map(castmember => (
+                <CastCrewListItem
+                  key={`crewid:${castmember.id}${castmember.job}`}
+                  actorName={castmember.name}
+                  character={castmember.job}
+                  imageUrl={
+                    castImages.find(el => el.id == castmember.id)?.imgUrl
+                  }
+                />
+              ))}
         </ul>
         <footer className="w-screen h-10 bg-dark fixed -bottom-2 left-0"></footer>
       </section>
