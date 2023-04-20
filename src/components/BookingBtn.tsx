@@ -9,7 +9,6 @@ interface Props extends Button {
 
 function BookingBtn({ disabled, children }: Props) {
   const [selected, setSelected] = useState(false);
-  console.log(selected);
 
   return (
     <button
