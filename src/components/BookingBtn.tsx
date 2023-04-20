@@ -16,7 +16,7 @@ function BookingBtn({ disabled, children }: Props) {
       disabled={disabled}
       onClick={() => setSelected(!selected)}
       className={clsx(
-        'w-20 h-7 rounded-md disabled:text-white-dimmed-heavy disabled:bg-dark',
+        'w-20 h-7 rounded-md disabled:text-white-dimmed-heavy bg-dark',
         selected ? ' text-dark-light bg-yellow' : 'text-white-dimmed'
       )}
     >
