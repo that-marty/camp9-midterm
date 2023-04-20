@@ -2,58 +2,27 @@ import BookingBtn from './BookingBtn';
 
 export default function BookingTime() {
   const currentDate = new Date();
-  const end = new Date();
-  const movieDurationInMinutes = 90;
+  const END_HOUR = new Date();
+  const MOVIE_DURATION_IN_MINUTES = 95;
 
-  end.setHours(23, 0, 0, 0);
+  END_HOUR.setHours(23, 0, 0, 0);
 
-  const monthNames = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ];
-
-  function addDays(date: Date, days: number) {
-    const newDate = new Date(date);
-    newDate.setDate(newDate.getDate() + days);
-    const day = newDate.getDate();
-    const month = newDate.getMonth();
-    const monthName = monthNames[month];
-    return `${day} ${monthName}`;
+  function roundToNearest30(date = new Date()) {
+    const minutes = 30;
+    const ms = 1000 * 60 * minutes;
+    return new Date(Math.ceil(date.getTime() / ms) * ms);
   }
 
-  const dateBtns = [];
+  const nextMovieStart = new Date(
+    currentDate.getTime() + MOVIE_DURATION_IN_MINUTES * 60000
+  );
 
-  for (let i = 0; i < 12; i++) {
-    const label = addDays(currentDate, i);
-    const bookingBtn = <BookingBtn key={i} children={label} />;
-    dateBtns.push(bookingBtn);
-  }
+  const newTime = roundToNearest30(nextMovieStart);
 
-  const timeBtns = [];
+  const hour = newTime.getHours();
+  const minutes = newTime.getMinutes().toString().padStart(2, '0');
 
-  for (let i = 0; currentDate < end; i++) {
-    const hours = currentDate.getHours();
-    const minutes = currentDate.getMinutes();
-    const roundedMinutes =
-      Math.floor(minutes / movieDurationInMinutes) * movieDurationInMinutes;
-    const label = `${hours.toString().padStart(2, '0')}:${roundedMinutes
-      .toString()
-      .padStart(2, '0')}`;
-    const bookingBtn = <BookingBtn key={i} children={label} />;
-    timeBtns.push(bookingBtn);
-    currentDate.setMinutes(currentDate.getMinutes() + movieDurationInMinutes);
-  }
-  return <>{timeBtns}</>;
+  const fullDate = `${hour}:${minutes}`;
+
+  return <BookingBtn key={`label`} children={fullDate}></BookingBtn>;
 }
-
-
