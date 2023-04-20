@@ -17,36 +17,47 @@ function Credits() {
     `https://api.themoviedb.org/3/movie/${id}/credits?api_key=b83392e48747a4845ad80c2011eaa33b&language=en-US`
   );
   const [castImages, setCastImages] = useState<CastImage[]>([]);
+  const [fetchedCastImages, setFetchedCastImages] = useState(false);
   const [crewImages, setCrewImages] = useState<string[]>();
   // when credits data is fetched, fetch an image url for each cast and crew member and add it to the corresponding object in the credits data
   useEffect(() => {
-    if (data)
-      if (data?.cast) {
-        for (const castMember of data?.cast) {
+    console.log('inUseEffect');
+    if (data) {
+      if (data?.cast && !fetchedCastImages) {
+        for (const castMember of data.cast) {
+          let newCastImage = {
+            id: castMember.id,
+            imgUrl: 'LOADING',
+          };
           axios
             .get(
               `https://api.themoviedb.org/3/person/${castMember.id}/images?api_key=b83392e48747a4845ad80c2011eaa33b`
             )
             .then(result => {
               try {
-                castMember.imgUrl = `https://image.tmdb.org/t/p/original${result.data.profiles[0].file_path}`;
+                newCastImage.imgUrl = `https://image.tmdb.org/t/p/original${result.data.profiles[0].file_path}`;
               } catch {
-                castMember.imgUrl = 'NO IMAGE FOUND';
+                newCastImage.imgUrl = 'NO IMAGE FOUND';
               }
-              const newCastImage = {
-                id: castMember.id,
-                imgUrl: castMember.imgUrl,
-              };
-              console.log(newCastImage);
               setCastImages(oldImages => [...oldImages, newCastImage]);
-              // console.log(data.cast);
+            })
+            .catch(err => {
+              console.log(err);
+              newCastImage.imgUrl = 'NO IMAGE FOUND';
+              setCastImages(oldImages => [...oldImages, newCastImage]);
             });
         }
+        setFetchedCastImages(false);
       }
+    }
+    return () => {
+      console.log('in cleanup');
+    };
   }, [data]);
 
   console.log(castImages);
-  console.log(data?.cast);
+  console.log(castImages.length);
+  console.log(data?.cast.length);
   if (isLoading)
     return (
       <section className="py-9 px-6 mb-2">
@@ -80,7 +91,7 @@ function Credits() {
               {castmember.name}
               <img
                 className="w-20 h-20"
-                src={castImages[data.cast.indexOf(castmember)]?.imgUrl}
+                src={castImages.find(el => el.id == castmember.id)?.imgUrl}
               />
             </li>
           ))}
