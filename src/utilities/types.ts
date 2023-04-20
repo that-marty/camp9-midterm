@@ -20,11 +20,12 @@ export type TMDBCast = {
   id: number;
   name: string;
   character: string;
-  imgUrl: string;
 };
+
+export type TMDBCrew = { id: number; name: string; job: string };
 
 export type MovieDbCreditsResponse = {
   id: number;
   cast: TMDBCast[];
-  crew: { id: number; name: string; job: string; imgUrl: string }[];
+  crew: TMDBCrew[];
 };
