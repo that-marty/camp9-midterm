@@ -24,5 +24,5 @@ export default function BookingTime() {
 
   const fullDate = `${hour}:${minutes}`;
 
-  return <BookingBtn key={`label`} children={fullDate}></BookingBtn>;
+  return <BookingBtn key={`label`} children={fullDate} isSelected={false}></BookingBtn>;
 }

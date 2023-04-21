@@ -5,9 +5,10 @@ type Button = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 interface Props extends Button {
   children: string;
+  isSelected: boolean;
 }
 
-function BookingBtn({ disabled, children }: Props) {
+function BookingBtn({ disabled, isSelected, children }: Props) {
   const [selected, setSelected] = useState(false);
 
   return (

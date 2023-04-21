@@ -28,7 +28,9 @@ export default function BookingDate() {
   }
 
   function createBookingButton(label: string) {
-    return <BookingBtn key={label} children={label}></BookingBtn>;
+    return (
+      <BookingBtn key={label} children={label} isSelected={false}></BookingBtn>
+    );
   }
 
   const dateButtons = [];
@@ -40,3 +42,8 @@ export default function BookingDate() {
   }
   return <>{dateButtons}</>;
 }
+
+// 1. select one date button at the time. If a second one is selected, the first on is deselected
+// 2. if a button is selected, the time buttons become selectable
+// 3. select one time button at the time. If a second one is selected, the first on is deselected
+// 4. if both date and time buttons are selected, the button selectSeat becomes selectable
