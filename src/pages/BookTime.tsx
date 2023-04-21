@@ -30,7 +30,12 @@ export default function BookTime() {
         <div className="py-6 border-opacity-20">
           <h2 className="text-sm text-white-dimmed font-bold ml-1">Time</h2>
           <div className="pt-5 grid grid-cols-4 gap-[18px]">
-            {<BookingTime />}
+            {
+              <BookingTime
+                onSelect={handleDataSelected}
+                selectedDate={selectedDate}
+              />
+            }
           </div>
         </div>
       )}

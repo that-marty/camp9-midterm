@@ -1,28 +1,38 @@
 import BookingBtn from './BookingBtn';
+import { eachMinuteOfInterval, add, format, setHours } from 'date-fns';
 
-export default function BookingTime() {
-  const currentDate = new Date();
-  const END_HOUR = new Date();
-  const MOVIE_DURATION_IN_MINUTES = 95;
+interface Props {
+  onSelect: (date: Date) => void;
+  selectedDate: Date | null;
+}
 
-  END_HOUR.setHours(23, 0, 0, 0);
+export default function BookingDate({ onSelect, selectedDate }: Props) {
+  const day = selectedDate || new Date();
 
-  function roundToNearest30(date = new Date()) {
-    const minutes = 30;
-    const ms = 1000 * 60 * minutes;
-    return new Date(Math.ceil(date.getTime() / ms) * ms);
+  const intervals = eachMinuteOfInterval({
+    start: day,
+    end: setHours(day, 23),
+  }).filter(date => date.getMinutes() === 0 && date.getHours() % 2 === 0);
+
+  function onClickHandler(date: Date) {
+    onSelect(date);
   }
 
-  const nextMovieStart = new Date(
-    currentDate.getTime() + MOVIE_DURATION_IN_MINUTES * 60000
+  return (
+    <>
+      {intervals.map(date => (
+        <BookingBtn
+          key={date.toISOString()}
+          isSelected={
+            selectedDate
+              ? selectedDate.toISOString() === date.toISOString()
+              : false
+          }
+          onClick={() => onClickHandler(date)}
+        >
+          {format(new Date(date), 'HH:mm')}
+        </BookingBtn>
+      ))}
+    </>
   );
-
-  const newTime = roundToNearest30(nextMovieStart);
-
-  const hour = newTime.getHours();
-  const minutes = newTime.getMinutes().toString().padStart(2, '0');
-
-  const fullDate = `${hour}:${minutes}`;
-
-  return <BookingBtn key={`label`} children={fullDate} isSelected={false}></BookingBtn>;
 }
