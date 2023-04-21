@@ -1,22 +1,19 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect } from 'react';
 import useQuery from '../hook/useQuery';
 import type { MovieDbResponse } from '../utilities/types';
 import type { Movie } from '../utilities/types';
 
 interface PaginationMovies {
   state: number;
-  setState: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export default function PaginationMovies({
-  state,
-  setState,
-}: PaginationMovies) {
+export default function PaginationMovies({ state }: PaginationMovies) {
   console.log(state);
   const { isError, isLoading, data } = useQuery<MovieDbResponse>(
-    'https://api.themoviedb.org/3/movie/upcoming?api_key=b83392e48747a4845ad80c2011eaa33b'
+    `https://api.themoviedb.org/3/movie/upcoming?api_key=b83392e48747a4845ad80c2011eaa33b`
   );
-  console.log(data);
+
   const allMovies = data?.results;
   if (isError) {
     return <h1>"Couldn't find the movies, sorry"</h1>;
@@ -27,7 +24,7 @@ export default function PaginationMovies({
   let fourMovies = allMovies;
   switch (state) {
     case 1:
-      fourMovies = allMovies?.splice(5);
+      fourMovies = allMovies?.slice(0, 4);
       break;
     case 2:
       fourMovies = allMovies?.slice(4, 8);
@@ -42,13 +39,18 @@ export default function PaginationMovies({
       fourMovies = allMovies?.slice(16, 20);
       break;
   }
+
+  console.log({ fourMovies });
   return (
-    <div className="flex ">
+    <div className="flex flex-row flex-wrap gap-5 justify-between w-full h-[full]">
       {fourMovies?.map((movie, index) => {
         let image = movie.poster_path;
         return (
-          <div className={'h-10 w-10 bg-red'} key={index}>
-            <img src={`https://image.tmdb.org/t/p/original/${image}`}></img>
+          <div className={'h-auto'} key={index}>
+            <img
+              className={' h-64'}
+              src={`https://image.tmdb.org/t/p/original/${image}`}
+            ></img>
           </div>
         );
       })}
