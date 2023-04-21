@@ -1,6 +1,4 @@
-import React from 'react';
 import Button from '../components/Button';
-import PageHeader from '../components/CreditsPageHeader';
 import { Link, useParams } from 'react-router-dom';
 import useQuery from '../hook/useQuery';
 import { MovieDetailDbResponse } from '../utilities/types';

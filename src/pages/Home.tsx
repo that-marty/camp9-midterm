@@ -1,4 +1,3 @@
-import NavigationLayout from '../components/NavigationLayout';
 import SearchBar from '../components/Searchbar';
 import UpcomingMovies from '../components/UpcomingMovies';
 import GenreFavorites from '../components/genre/GenreFavorites';
