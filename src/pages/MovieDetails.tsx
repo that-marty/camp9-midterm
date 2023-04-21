@@ -17,7 +17,7 @@ function MovieDetails() {
   );
 
   if (isLoading || !data) {
-    return 'loading...';
+    return <p>loading...</p>;
   }
 
   return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import PageHeader from '../components/PageHeader';
+import PageHeader from '../components/CreditsPageHeader';
 import Button from '../components/Button';
 
 function Genres() {
