@@ -8,7 +8,7 @@ interface Props {
   image?: string;
 }
 
-function WelcomeHeader({ name = 'Lui', image = Avatar, ...props }: Props) {
+function WelcomeHeader({ name = 'Dan', image = Avatar, ...props }: Props) {
   return (
     <header className="flex justify-between bg-[#1C1C27]">
       <div className="flex flex-col justify-between">
