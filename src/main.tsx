@@ -5,11 +5,8 @@ import './index.css';
 import NavigationLayout from './components/NavigationLayout';
 import MovieDetails from './pages/MovieDetails';
 import Credits from './pages/Credits';
-
 import SearchBar from './components/Searchbar';
-
 import LogInPage from './pages/LogInPage';
-
 
 export const router = createBrowserRouter([
   {
