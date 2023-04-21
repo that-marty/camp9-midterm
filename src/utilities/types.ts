@@ -24,4 +24,10 @@ export type MovieDetailDbResponse = {
   vote_average: number;
   overview: string;
   imdb_id: string;
+  credits: {
+    crew: Array<{
+      name: string;
+      job: "Screenplay" | "Director";
+    }>
+  }
 };
