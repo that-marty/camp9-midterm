@@ -2,11 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './index.css';
+import WelcomeHeader from './components/WelcomeHeader';
 import NavigationLayout from './components/NavigationLayout';
+import MovieDetails from './pages/MovieDetails';
+import Home from './pages/Home';
+import Genres from './pages/Genres';
+import Credits from './pages/Credits';
 import SearchBar from './components/Searchbar';
 import LogInPage from './pages/LogInPage';
-import MovieDetails from './pages/MovieDetails';
-import Movies from './pages/Movies';
 
 export const router = createBrowserRouter([
   {
@@ -15,7 +18,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <h1>HOME</h1>, // insert your page here
+        element: <Home/>,
       },
       {
         path: '/movies',
@@ -29,15 +32,15 @@ export const router = createBrowserRouter([
   },
   {
     path: '/genres',
-    element: <h1>GENRES</h1>, // insert your page here
+    element: <Genres/>, // insert your page here
   },
   {
     path: '/movies/:id',
     element: <MovieDetails />,
   },
   {
-    path: '/cast/:id',
-    element: <h1>CAST AND CREW</h1>, // insert your page here
+    path: '/credits/:id',
+    element: <Credits />,
   },
   {
     path: '/dates',
