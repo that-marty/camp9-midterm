@@ -22,15 +22,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/movies',
-        element: <h1>MOVIES</h1>, // insert your page here
-      },
-      {
-        path: '/bookmarks',
-        element: <h1>BOOKMARKS</h1>, // insert your page here
-      },
-      {
-        path: '/account',
-        element: <h1>ACCOUNT</h1>, // insert your page here
+        element: <Movies />,
       },
     ],
   },
