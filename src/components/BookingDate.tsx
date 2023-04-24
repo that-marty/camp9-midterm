@@ -34,7 +34,7 @@ export default function BookingDate({ onSelect, selectedDate }: Props) {
     const disabledDates: JSX.Element[] = [];
     while (disabledDates.length < 4) {
       const randomIndex = Math.floor(Math.random() * dateBtns.length);
-      if (!disabledDates.includes(dateBtns[randomIndex])) {
+      if (!disabledDates.some(date => date.key === dateBtns[randomIndex].key)) {
         disabledDates.push(dateBtns[randomIndex]);
       } //splice returns modified array
       dateBtns.splice(randomIndex, 1);
@@ -55,6 +55,7 @@ export default function BookingDate({ onSelect, selectedDate }: Props) {
   }
 
   const finalDisabledDates = FourDates(dateBtns);
+  console.log(finalDisabledDates);
 
   const allDates = [...dateBtns, ...finalDisabledDates];
 

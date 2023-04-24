@@ -9,9 +9,10 @@ interface Props extends Button {
   isSelected: boolean;
 }
 
-function BookingBtn({ isSelected, onClick, children }: Props) {
+function BookingBtn({ isSelected, onClick, children, disabled }: Props) {
   return (
-    <button
+    <button 
+      disabled={disabled}
       onClick={onClick}
       className={clsx(
         'w-20 h-7 rounded-md disabled:text-white-dimmed-heavy disabled:bg-dark',
