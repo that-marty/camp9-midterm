@@ -7,10 +7,16 @@ interface Props {
 }
 
 export default function BookingDate({ onSelect, selectedDate }: Props) {
-  const day = selectedDate || new Date();
+  let day = selectedDate || new Date();
+
+  if (day.getDay() === new Date().getDay()) day = new Date();
+
+  if (day.getDay() === new Date().getDay()) {
+    day = new Date();
+  }
 
   const intervals = eachMinuteOfInterval({
-    start: day,
+    start: setHours(day, 10),
     end: setHours(day, 23),
   }).filter(date => date.getMinutes() === 0 && date.getHours() % 2 === 0);
 

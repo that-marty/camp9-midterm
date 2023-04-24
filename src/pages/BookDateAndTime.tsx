@@ -3,7 +3,7 @@ import BookingDate from '../components/BookingDate';
 import BookingTime from '../components/BookingTime';
 import PageHeader from '../components/PageHeader';
 
-export default function BookTime() {
+export default function BookDateAndTime() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
   function handleDataSelected(date: Date) {
