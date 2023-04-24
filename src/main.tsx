@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from 'react-query'; // Import react-query components
 import './index.css';
 import WelcomeHeader from './components/WelcomeHeader';
 import NavigationLayout from './components/NavigationLayout';
@@ -12,6 +13,8 @@ import Credits from './pages/Credits';
 import SearchBar from './components/Searchbar';
 import LogInPage from './pages/LogInPage';
 
+const queryClient = new QueryClient(); // Create an instance of QueryClient
+
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -19,7 +22,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home/>,
+        element: <Home />,
       },
       {
         path: '/movies',
@@ -29,11 +32,11 @@ export const router = createBrowserRouter([
   },
   {
     path: '/login',
-    element: <LogInPage />, // insert your page here
+    element: <LogInPage />,
   },
   {
     path: '/genres',
-    element: <Genres/>, // insert your page here
+    element: <Genres />,
   },
   {
     path: '/movies/:id',
@@ -45,20 +48,23 @@ export const router = createBrowserRouter([
   },
   {
     path: '/dates',
-    element: <BookDateAndTime />, // insert your page here
+    element: <BookDateAndTime />,
   },
   {
     path: '/seats',
-    element: <h1>SELECT SEATS</h1>, // insert your page here
+    element: <h1>SELECT SEATS</h1>,
   },
   {
     path: '/success',
-    element: <h1>BOOKING SUCCESSFULL</h1>, // insert your page here
+    element: <h1>BOOKING SUCCESSFULL</h1>,
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   </React.StrictMode>
 );
+
